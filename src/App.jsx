@@ -1,34 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { use, useState } from 'react'
+import Form from './components/form'
+import List from './components/userlist'
+import useUsersStore from './store/usersStore'
 
-function App() {
-  const [count, setCount] = useState(0)
+
+const App = () => {
+
+  const {addNewUser, users} = useUsersStore()
+  // const [users, setUsers] = useState([
+  //   {
+  //     id: 1, name: 'Emma', email: 'nani@example.com'
+  //   },
+  //   {
+  //     id: 2, name: 'Olivia', email: 'oli@example.com'
+  //   },
+  //   {
+  //     id: 3, name: 'Ava', email: 'ava@example.com'
+  //   }
+  // ]);
+
+     console.log(users);
+
+    //  const addNewUser = (newUser) => {
+    //     setUsers([...users, {...newUser, id: uuidv4()}]);
+    // };
+
+  // const editUser = (userId, newDetails) => {
+  //   const updatedUsers = users.map(user => {
+  //     if (user.id === userId) {
+  //       return { ...user, ...newDetails };
+  //     } else {
+  //       return user;
+  //     }
+  //   });
+  //   setUsers(updatedUsers);
+  // };
+
+  // const deleteUser = (userId) => {
+  //   let filteredArray = users.filter((user) => {
+  //     if (user.id !== userId ){
+  //       return user;
+  //     }
+  //   })
+  // //   setUsers(filteredArray);
+  // }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className='grid grid-cols-2 gap-4 p-4'>
+      <Form addUser={addNewUser} />
+      <List usersList={users}/>
+    </div>
   )
 }
 
